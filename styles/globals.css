@@ -1,0 +1,235 @@
+/* 这是一个全局CSS文件，主要包含以下几个部分：
+
+1. Tailwind CSS的基础配置导入
+2. 颜色主题变量定义（包括明暗两种主题）
+3. 基础样式设置
+4. 自定义动画效果
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 定义全局颜色变量，使用HSL颜色格式 */
+@layer base {
+  :root {
+    /* 背景色 - 纯白色 */
+    --background: 0 0% 100%;
+    /* 前景色（文字） - 深灰色 */
+    --foreground: 20 10% 20%;
+    /* 卡片背景色 - 纯白色 */
+    --card: 0 0% 100%;
+    /* 卡片文字颜色 - 深灰色 */
+    --card-foreground: 20 10% 20%;
+    /* 弹出框背景色 - 纯白色 */
+    --popover: 0 0% 100%;
+    /* 弹出框文字颜色 - 深灰色 */
+    --popover-foreground: 20 10% 20%;
+    /* 主要强调色 - 玫红色 */
+    --primary: 330 75% 50%;
+    /* 主要强调色上的文字颜色 - 纯白色 */
+    --primary-foreground: 0 0% 100%;
+    /* 次要颜色 - 浅灰色 */
+    --secondary: 0 0% 90%;
+    /* 次要颜色上的文字颜色 - 深灰色 */
+    --secondary-foreground: 20 10% 20%;
+    /* 柔和背景色 - 非常浅的灰色 */
+    --muted: 0 0% 95%;
+    /* 柔和文字颜色 - 中灰色 */
+    --muted-foreground: 20 10% 40%;
+    /* 强调色 - 金黄色 */
+    --accent: 45 90% 50%;
+    /* 强调色上的文字颜色 - 深灰色 */
+    --accent-foreground: 20 10% 20%;
+    /* 危险/错误颜色 - 亮红色 */
+    --destructive: 0 84% 60%;
+    /* 危险/错误颜色上的文字颜色 - 纯白色 */
+    --destructive-foreground: 0 0% 100%;
+    /* 边框颜色 - 浅灰色 */
+    --border: 0 0% 90%;
+    /* 输入框边框颜色 - 浅灰色 */
+    --input: 0 0% 90%;
+    /* 焦点环颜色 - 鲜红色 */
+    --ring: 0 75% 50%;
+    /* 边框圆角大小 */
+    --radius: 0.5rem;
+  }
+
+  /* 暗色主题颜色变量 */
+  .dark {
+    --background: 20 10% 10%;
+    --foreground: 0 0% 95%;
+    --card: 20 10% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 20 10% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 20 10% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 20 10% 15%;
+    --muted-foreground: 20 10% 70%;
+    --accent: 45 80% 50%;
+    --accent-foreground: 20 10% 10%;
+    --destructive: 0 70% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 10% 15%;
+    --input: 20 10% 15%;
+    --ring: 0 70% 50%;
+  }
+}
+
+/* 基础样式设置 */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* 自定义动画效果 */
+@layer utilities {
+  /* 淡入动画相关类 */
+  .animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  /* 向上滑动动画 */
+  .animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* 霓虹发光效果 */
+  .neon-glow {
+    text-shadow:
+      0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary)),
+      0 0 30px hsl(var(--primary));
+  }
+
+  .neon-box {
+    box-shadow:
+      0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary));
+  }
+
+  /* 悬浮效果增强 */
+  .hover-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-glow:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 15px hsl(var(--primary)),
+      0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  /* 脉冲动画 */
+  .animate-pulse {
+    animation: pulse 6s ease-in-out infinite alternate;
+  }
+
+  /* 动画延迟类 */
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+
+  /* 淡入动画关键帧 */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 向上滑动动画关键帧 */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 脉冲动画关键帧 */
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+  }
+
+  /* 文字特效动画 */
+  .animate-text-reveal {
+    animation: textReveal 0.8s ease-out forwards;
+  }
+
+  .animate-text-gradient {
+    animation: textGradient 8s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-text-glow {
+    animation: textGlow 3s ease-in-out infinite alternate;
+  }
+
+  /* 文字显示动画关键帧 */
+  @keyframes textReveal {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* 文字渐变动画关键帧 */
+  @keyframes textGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* 文字发光动画关键帧 */
+  @keyframes textGlow {
+    0% {
+      opacity: 0.3;
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 0.7;
+      filter: blur(6px);
+    }
+  }
+}
